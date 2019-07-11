@@ -1,6 +1,8 @@
+
 let items = document.getElementsByClassName('item')
 let itemsID = []
 items = Array.prototype.slice.call(items)
+
 let increment = 25
 let activeItem
 
@@ -19,7 +21,8 @@ function dragElement(item) {
 
     function dragMouseDown(e) {
         activeItem = e.target.id
-        console.log(activeItem)
+        item.style.pointerEvents = 'none'
+
         e = e || window.event
         e.preventDefault()
 
@@ -46,6 +49,9 @@ function dragElement(item) {
     function closeDragElement() {
         document.onmouseup = null
         document.onmousemove = null
+        activeItem = null
+
+        item.style.pointerEvents = 'auto'
     }
 }
 
@@ -56,3 +62,10 @@ items.map(function(item) {
     increment = increment + 25
     dragElement(document.getElementById(item.id))
 })
+
+function dropItem(e) {
+    let item = document.getElementById(activeItem)
+    if(item) {
+        e.target.appendChild(item)
+    }
+}

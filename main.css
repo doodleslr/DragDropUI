@@ -2,23 +2,31 @@ body {
     height: 100vh;
     width: 100vw;
 }
+
 #item-holder {
     width: inherit;
     height: 100px;
     background-color: orange;
 }
+#item-holder div {
+    height: 2em;
+    width: 2em;
+    position: fixed
+}
+
 #item-sandbox {
     height: inherit;
     width: inherit;
     background-color: goldenrod;
 }
-.item {
-    height: 150px;
-    width: 150px;
-    background-color: bisque;
-
+#item-sandbox div {
+    height: 5em;
+    width: 5em;
     position: absolute;
     top: 40%;
     left: 40%;
     transform: translate(-40%, -40%);
+}
+.item {
+    background-color: bisque;
 }
