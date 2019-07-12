@@ -67,9 +67,13 @@ function dropItem(e, flag) {
     let item = document.getElementById(activeItem)
     if(item) {
         if(flag) {
+            //play animation for append
             e.target.appendChild(item)
         } else {
             document.getElementById('item-sandbox').appendChild(item)
         }
     }
 }
+
+//need window snaps
+//i think the feature is called snap?
