@@ -63,9 +63,13 @@ items.map(function(item) {
     dragElement(document.getElementById(item.id))
 })
 
-function dropItem(e) {
+function dropItem(e, flag) {
     let item = document.getElementById(activeItem)
     if(item) {
-        e.target.appendChild(item)
+        if(flag) {
+            e.target.appendChild(item)
+        } else {
+            document.getElementById('item-sandbox').appendChild(item)
+        }
     }
 }
