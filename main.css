@@ -34,3 +34,11 @@ body {
 .item {
     background-color: bisque;
 }
+#item-add {
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+    top: 25px;
+    right: 25px;
+}

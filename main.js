@@ -1,7 +1,8 @@
 
 let items = document.getElementsByClassName('item')
-let itemsID = []
 items = Array.prototype.slice.call(items)
+
+const sandbox = document.getElementById('item-sandbox')
 
 let increment = 25
 let activeItem
@@ -21,6 +22,7 @@ function dragElement(item) {
 
     function dragMouseDown(e) {
         activeItem = e.target.id
+        console.log(activeItem)
         item.style.pointerEvents = 'none'
 
         e = e || window.event
@@ -70,10 +72,23 @@ function dropItem(e, flag) {
             //play animation for append
             e.target.appendChild(item)
         } else {
-            document.getElementById('item-sandbox').appendChild(item)
+            sandbox.appendChild(item)
         }
     }
 }
 
-//need window snaps
-//i think the feature is called snap?
+function addItem() {
+    let newId = items.length
+    let newItem = document.createElement('div')
+
+    newItem.className = 'item'
+    newItem.id = 'item-' + newId
+    newItem.style.backgroundColor = getRandomColor()
+    newItem.style.top = (items[(newId - 1)].offsetTop + 25) + 'px'
+    newItem.style.left = (items[(newId - 1)].offsetLeft + 25) + 'px'
+
+    dragElement(newItem)
+
+    sandbox.appendChild(newItem)
+    items.push(newItem)
+}
