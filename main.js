@@ -52,6 +52,7 @@ function dragElement(item) {
             preview.style.height = window.innerHeight + 'px'
             preview.style.width = '250px'
         }
+
         if (getLeft(item) < 0) { 
             preview.style.display = 'block'
             preview.style.left = '0px'
