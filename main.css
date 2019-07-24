@@ -17,15 +17,13 @@ body {
     display: inline-flex;
     margin: auto 1em;
 }
-
 #item-sandbox {
     height: inherit;
     width: inherit;
     background-color: goldenrod;
+    position: relative;
 }
-#item-sandbox div {
-    height: 5em;
-    width: 5em;
+#item-sandbox .item {
     position: absolute;
     top: 40%;
     left: 40%;
@@ -33,6 +31,8 @@ body {
 }
 .item {
     background-color: bisque;
+    height: 75px;
+    width: 75px;
 }
 #item-add {
     position: absolute;
@@ -41,4 +41,12 @@ body {
     border-radius: 50px;
     top: 25px;
     right: 25px;
+}
+
+#preview {
+    position: absolute;
+    display: none;
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.8);
 }

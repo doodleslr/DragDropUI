@@ -3,6 +3,7 @@ let items = document.getElementsByClassName('item')
 items = Array.prototype.slice.call(items)
 
 const sandbox = document.getElementById('item-sandbox')
+const preview = document.getElementById('preview')
 
 let increment = 25
 let activeItem
@@ -44,6 +45,30 @@ function dragElement(item) {
         pos3 = e.clientX
         pos4 = e.clientY
 
+        if (getRight(item) > window.innerWidth) {
+            preview.style.display = 'block'
+            preview.style.left = (window.innerWidth - 250) + 'px'
+            preview.style.top = '0px'
+            preview.style.height = window.innerHeight + 'px'
+            preview.style.width = '250px'
+        }
+        if (getLeft(item) < 0) { 
+            preview.style.display = 'block'
+            preview.style.left = '0px'
+            preview.style.top = '0px'
+            preview.style.height = window.innerHeight + 'px'
+            preview.style.width = '250px'
+        }
+
+        if (getBottom(item) > window.innerHeight) {
+            preview.style.display = 'block'
+            preview.style.left = '0px'
+            preview.style.top = (window.innerHeight - 250) + 'px'
+            preview.style.height = '250px'
+            preview.style.width = window.innerWidth + 'px'
+        }
+        //set a flag for collide true so closeDragElement can animate item to preview values
+
         item.style.top = (item.offsetTop - pos2) + 'px'
         item.style.left = (item.offsetLeft - pos1) + 'px'
     }
@@ -57,6 +82,18 @@ function dragElement(item) {
     }
 }
 
+function getLeft(item) {
+    return parseInt(item.style.left)
+}
+function getRight(item) {
+    var val = parseInt(item.style.left.substring(0, item.style.left.length - 2))
+    return (val + item.offsetWidth)
+}
+function getBottom(item) {
+    var val = parseInt(item.style.top.substring(0, item.style.top.length - 2))
+     return(val + item.offsetHeight)
+}
+
 items.map(function(item) {
     item.style.backgroundColor = getRandomColor()
     item.style.top = (item.offsetTop + increment) + 'px'
@@ -64,6 +101,7 @@ items.map(function(item) {
     increment = increment + 25
     dragElement(document.getElementById(item.id))
 })
+
 
 function dropItem(e, flag) {
     let item = document.getElementById(activeItem)
@@ -76,7 +114,6 @@ function dropItem(e, flag) {
         }
     }
 }
-
 function addItem() {
     let newId = items.length
     let newItem = document.createElement('div')
