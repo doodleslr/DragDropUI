@@ -32,9 +32,32 @@ body {
 }
 .item {
     background-color: bisque;
-    height: 75px;
-    width: 75px;
+    height: 225px;
+    width: 225px;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
+.item input, .item textarea {
+    width: 80%;
+    padding: 10px;
+    border: none;
+    background: rgba(255, 255, 255, 0.7)
+}
+.item-heading {
+    margin: 15px auto 5px auto;
+    font-weight: bold;
+    border-radius: 50px;
+}
+.item-text {
+    margin: 5px auto 15px auto;
+    flex-grow: 1;
+    border-radius: 25px;
+    resize: none;
+}
+
 #item-add {
     position: absolute;
     height: 50px;

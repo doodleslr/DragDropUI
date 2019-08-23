@@ -23,11 +23,13 @@ function dragElement(item) {
 
     function dragMouseDown(e) {
         activeItem = e.target.id
-        console.log(activeItem)
+
+        //required for hover over holder
         item.style.pointerEvents = 'none'
 
         e = e || window.event
-        e.preventDefault()
+        //disabling allows textarea
+        //e.preventDefault()
 
         pos3 = e.clientX;
         pos4 = e.clientY
@@ -58,17 +60,15 @@ function dragElement(item) {
             preview.style.top = '0px'
             preview.style.height = window.innerHeight + 'px'
             preview.style.width = '250px'
-        } else {
-            preview.style.display = 'none'
-        }
-
-        if (getBottom(item) > window.innerHeight) {
+        } else if (getBottom(item) > window.innerHeight) {
             console.log('poop')
             preview.style.display = 'block'
             preview.style.left = '0px'
             preview.style.top = (window.innerHeight - 250) + 'px'
             preview.style.height = '250px'
             preview.style.width = window.innerWidth + 'px'
+        } else {
+            preview.style.display = 'none'
         }
         //set a flag for collide true so closeDragElement can animate item to preview values
 
@@ -94,7 +94,7 @@ function getLeft(item) {
 function getBottom(item) {
     var val = parseInt(item.style.top.substring(0, item.style.top.length - 2))
     //no idea why but i need to double offset height for this one
-    return (val + (item.offsetHeight * 2))
+    return (val + item.offsetHeight)
 }
 
 items.map(function(item) {
