@@ -45,23 +45,25 @@ function dragElement(item) {
         pos3 = e.clientX
         pos4 = e.clientY
 
+
         if (getRight(item) > window.innerWidth) {
             preview.style.display = 'block'
             preview.style.left = (window.innerWidth - 250) + 'px'
             preview.style.top = '0px'
             preview.style.height = window.innerHeight + 'px'
             preview.style.width = '250px'
-        }
-
-        if (getLeft(item) < 0) { 
+        } else if (getLeft(item) < 0) { 
             preview.style.display = 'block'
             preview.style.left = '0px'
             preview.style.top = '0px'
             preview.style.height = window.innerHeight + 'px'
             preview.style.width = '250px'
+        } else {
+            preview.style.display = 'none'
         }
 
         if (getBottom(item) > window.innerHeight) {
+            console.log('poop')
             preview.style.display = 'block'
             preview.style.left = '0px'
             preview.style.top = (window.innerHeight - 250) + 'px'
@@ -82,17 +84,17 @@ function dragElement(item) {
         item.style.pointerEvents = 'auto'
     }
 }
-
-function getLeft(item) {
-    return parseInt(item.style.left)
-}
 function getRight(item) {
     var val = parseInt(item.style.left.substring(0, item.style.left.length - 2))
     return (val + item.offsetWidth)
 }
+function getLeft(item) {
+    return parseInt(item.style.left)
+}
 function getBottom(item) {
     var val = parseInt(item.style.top.substring(0, item.style.top.length - 2))
-     return(val + item.offsetHeight)
+    //no idea why but i need to double offset height for this one
+    return (val + (item.offsetHeight * 2))
 }
 
 items.map(function(item) {
